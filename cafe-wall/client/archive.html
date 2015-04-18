@@ -1,0 +1,42 @@
+<template name="wallArchive">
+  <div id="wrapper">
+    <header>The Wall <b>Archive</b></header>
+    <a href="/wall">Go Back</a>
+    <hr />
+    {{>wallPostsArchive}}
+    <hr />
+    {{#each allImages}}
+      <p>OK: {{url}}</p>
+      {{#if isUploaded}}
+      <div class="wallPost">
+        <a href="{{url}}" target="_blank">
+          <img class="wallImage" src="{{url}}">
+        </a>
+        {{#if metadata.username}}
+        <br />
+        <div style="margin-top:8px">Added by <b>{{metadata.username}}</b></div>
+        <br />
+        {{/if}}
+      </div>
+      {{/if}}
+    {{/each}}
+      
+  </div>
+</template>
+
+<template name="wallPostsArchive">
+  {{#each allPosts}}
+    {{#if body}}
+    <div style="margin-top:8px">{{sanitizeContent body}}</div>
+    {{/if}}
+    {{#if attachedFileId}}
+    <img class="wallImage" src="{{getPictureUrl attachedFileId}}" />
+    {{/if}}
+    {{#if username}}
+    <div style="font-size:10px;margin-top:8px">Posted by <b>{{username}}</b>.</div>
+    {{else}}
+    <div style="font-size:10px;margin-top:8px"><i>Mystery post!</i></div>
+    {{/if}}
+    <br />
+  {{/each}}
+</template>

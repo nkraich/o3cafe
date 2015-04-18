@@ -1,0 +1,62 @@
+h2 {
+  font-size: 14px;
+  margin-top: -16px;
+  text-align: center;
+  margin-bottom: 48px;
+  color: #888;
+}
+
+.wallPost {
+  margin-bottom: 16px;
+}
+
+.wallImage {
+  max-width: 100%;
+  border: 1px solid #eee;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.pendingFileImage {
+  max-width: 80%;
+  max-height: 150px;
+  border: 1px solid #eee;
+}
+
+#uploader {
+  text-align: center;
+}
+
+.wall-problem {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 14px;
+  color: #fff;
+  margin: 0px;
+  font-weight: 400;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 999px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+p.footer {
+  color: #888;
+  text-align: right;
+}

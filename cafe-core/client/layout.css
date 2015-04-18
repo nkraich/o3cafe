@@ -1,0 +1,110 @@
+.main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+#leftPanel {
+  position: absolute;
+  vertical-align: top;
+  display: inline-block;
+  overflow-y: scroll;
+  width: 50%;
+  margin: 0px;
+  top: 40px;
+  bottom: 0px;
+}
+
+#rightPanel {
+  position: absolute;
+  vertical-align: top;
+  display: inline-block;
+  left: 50%;
+  width: 50%;
+  margin: 0px;
+  margin-left: -1px;
+  border-left: 1px solid #ccc;
+  top: 40px;
+  bottom: 0px;
+}
+
+#wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -5em;
+  margin-left: 24px;
+  margin-right: 24px;
+  padding-bottom: 8px;
+}
+
+p {
+  font-weight: 300;
+}
+
+/* Header */
+
+.header {
+  background-color: #e8f0f8;
+  height: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+   -khtml-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.header h1 {
+  position: absolute;
+  min-height: 40px;
+  display: inline-block;
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  margin-left: 12px;
+  margin-top: 10px;
+  color: #777;
+  font-family: 'League Script', serif;
+  pointer-events:none;
+}
+
+.mainMenu {
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background: #e8f0f8;
+}
+
+.mainMenuItem {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 14px;
+  line-height: 26px;
+  color: #428bca;
+  height: 40px;
+}
+
+.mainMenuItem.selected {
+  font-weight: bold;
+}
+
+.mainMenuItem .glyphicon {
+  margin-left: 4px;
+}
+
+.mainMenuItem:hover {
+  background: #fff;
+  cursor: pointer;
+  color: #dd8877;
+  text-decoration: none;
+}

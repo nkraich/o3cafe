@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+}
+
+html { 
+  height: 100%;
+  font-weight: 300;
+}
+
+body { 
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  color: #503838;
+}
+
+header {
+  font-weight: 300;
+  font-size: 24px;
+  color: #705858;
+  padding: 0px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  width: 100%;
+  text-align: center;
+  letter-spacing: -0.05em;
+}
+
+textarea {
+ resize: none;
+}
+
+.group {
+}
+
+.group-heading {
+background: #808faa; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #808faa 1%, #cedce7 68%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(1%,#808faa), color-stop(68%,#cedce7)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #808faa 1%,#cedce7 68%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #808faa 1%,#cedce7 68%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #808faa 1%,#cedce7 68%); /* IE10+ */
+background: linear-gradient(135deg,  #808faa 1%,#cedce7 68%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#808faa', endColorstr='#cedce7',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+
+  text-align: center;
+}
+
+.group-heading-warning {
+background: #f9d740; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #f9d740 0%, #dc5d26 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f9d740), color-stop(100%,#dc5d26)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #f9d740 0%,#dc5d26 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #f9d740 0%,#dc5d26 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #f9d740 0%,#dc5d26 100%); /* IE10+ */
+background: linear-gradient(135deg,  #f9d740 0%,#dc5d26 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d740', endColorstr='#dc5d26',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  
+  text-align: center;
+}
+
+.group-title {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 14px;
+  color: #fff;
+  margin: 0px;
+  font-weight: 400;
+}
+
+.group-body {
+  padding: 16px;
+}
+
+input {
+  font-weight: 300;
+}
+
+.leftHeaderCorner {
+  margin-left: 24px;
+  padding-top: 24px;
+  float: left;
+  width: 80px;
+  text-align: left;
+}
+
+.rightHeaderCorner {
+  margin-right: 24px;
+  padding-top: 24px;
+  float: right;
+  width: 80px;
+  text-align: right;
+}
+
+.deleteButton {
+  font-size:20px;
+  position:relative;
+  left:-16px;
+  top:-8px;
+  vertical-align:top;
+  background-color:#fff;
+  border-radius:12px;
+  padding:2px;
+  color:#330000;
+}
+
+.deleteButton:hover {
+  color:#ff0000;
+  cursor:pointer;
+}

@@ -1,0 +1,43 @@
+<template name="wall">
+  <div id="wrapper">
+    <header>The Wall</header>
+    {{>uploader}}
+    <br />
+    <a href="/wall/archive">View the archive</a>
+    <hr />
+    {{>wallPosts}}
+  </div>
+</template>
+
+<template name="wallPosts">
+  {{#each posts}}
+    {{#if body}}
+    <div style="margin-top:8px">{{sanitizeContent body}}</div>
+    {{/if}}
+    {{#if attachedFileId}}
+    <img class="wallImage" src="{{getPictureUrl attachedFileId}}" />
+    {{/if}}
+    <div style="font-size:10px;margin-top:8px">Posted by <b>{{getUsername userId}}</b>.</div>
+    <br />
+  {{/each}}
+</template>
+
+<template name="uploader">
+  <form>
+    <textarea id="wallPostTextArea" class="form-control input-md" rows="4"
+      placeholder="Write a message here. (Optional)"></textarea>
+    <br />
+    <span class="btn btn-default btn-file">
+      <span class="glyphicon glyphicon-floppy-open"></span>
+      Attach file <input id="fileInput2" type="file" />
+    </span>
+    <button id="postButton" type="button" class="btn btn-success btn-md" style="float:right">
+      <span class="glyphicon glyphicon-thumbs-up"></span> Do the Dew™
+    </button>
+  </form>
+  {{#if pendingFileUrl}}
+  <br />
+  <img class="pendingFileImage" src="{{pendingFileUrl}}">
+  <span id="pendingDeleteButton" class="glyphicon glyphicon-remove-circle deleteButton"></span>
+  {{/if}}
+</template>

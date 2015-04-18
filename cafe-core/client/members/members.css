@@ -1,0 +1,52 @@
+.member-form-page {
+}
+
+.member-form-page form {
+  position: relative;
+  left: 50%;
+  margin-left: -150px;
+  width: 300px;
+}
+
+.member-form-page form input {
+}
+
+.member-form-page form a {
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+.member-form-page p {
+  margin-left: 64px;
+  margin-right: 16px;
+}
+
+.member-form-page .links {
+  margin-top: 12px;
+}
+
+.member2 {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.member2 .username {
+}
+
+.member2 .status {
+  margin-left: 8px;
+  font-size: 10px;
+  color: #888;
+}
+
+.member2 .status.online {
+  color: #44b844;
+}
+
+.member2 .last-login-date {
+  float: right;
+}
+
+.member2 .last-login-ip {
+  float: right;
+}

@@ -1,0 +1,54 @@
+<template name="chat">
+  <div id="chatPanel">
+    <div id="chatWindow">
+      {{#if loggedIn}}
+      {{> messages}}
+      {{else}}
+      <p style="color:#999;margin-top:40px;text-align:center">Please <a href="/log-in">log in</a> to view the chat.</p>
+      {{/if}}
+    </div>
+    <div id="userListWindow">
+      {{> userList}}
+    </div>
+    <div id="chatFooter" class="panel-footer">
+      {{#if loggedIn}}
+      <form>
+        <input id="chatInput" class="form-control input-md"
+          placeholder="Type a message here." value="">
+      </form>
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="messages">
+  {{#each messages}}
+  {{#if action}}
+    <div><span style="color: #800000; font-weight: 400">• {{username}} {{sanitizeContent message}}</span></div>
+  {{else}}
+    <div>&lt;{{username}}&gt; {{sanitizeContent message}}</div>
+  {{/if}}
+  {{/each}}
+</template>
+
+<template name="userList">
+  {{#each users}}
+    {{#if status.idle}}
+      <div class="user idle">{{username}} <span class="small">{{score}}</span></div>
+    {{else}}
+      <div class="user">{{username}} <span class="small">{{score}}</span></div>
+    {{/if}}
+  {{/each}}
+  <div id="visitorsIndicator">{{visitorStatus}}</div>
+</template>
+
+<template name="username">
+  <div class="form-horizontal" role="form">
+    <div class="form-group">
+      <label for="inputEmail3" class="col-sm-3 control-label">Username:</label>
+      <div class="col-sm-9">
+        <input id="userName" class="form-control input-md" placeholder="Enter your old IRC nick!" value="{{ value }}">
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,29 @@
+<template name="members">
+  <div id="wrapper">
+    <header>Members</header>
+    {{#each members}}
+    <div class="member2">
+      <div>
+        {{#if status.online}}
+        <span class="username">{{username}}</span><span class="status online">Online now</span>
+        {{else}}
+        <span class="username">{{username}}</span><span class="status">Offline</span>
+        {{/if}}
+        <span class="last-login-date">{{formatDate status.lastLogin.date}}</span>
+      </div>
+      {{#if currentUser.admin}}
+      <div>
+        <span>
+          {{#if admin}}
+          <a href="#" class="remove-admin-button" data-id="{{_id}}">Remove admin</a> &nbsp;
+          {{else}}
+          <a href="#" class="make-admin-button" data-id="{{_id}}">Make admin</a> &nbsp;
+          {{/if}}
+        </span>
+        <span class="last-login-ip">{{status.lastLogin.ipAddr}}</span>
+      </div>
+      {{/if}}
+    </div>
+    {{/each}}
+  </div>
+</template>

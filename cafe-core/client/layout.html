@@ -1,0 +1,70 @@
+<template name="layout">
+<head>
+  <link href='http://fonts.googleapis.com/css?family=League+Script' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100'
+    rel='stylesheet' type='text/css'>
+  <link rel="icon" type="image/png" href="/favicon16.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/favicon192.png">
+  <title>O3 Cafe</title>
+</head>
+
+<body>
+  <div class="main">
+    {{> mainMenu}}
+    {{> leftPanel}}
+    {{> rightPanel}}
+  </div>
+</body>
+</template>
+
+<template name="leftPanel">
+  <div id="leftPanel">
+    <div style="margin: 4px">
+    {{> flashMessages}}
+    </div>
+    {{> yield}}
+  </div>
+</template>
+
+<template name="rightPanel">
+  <div id="rightPanel">
+    {{> chat}}
+  </div>
+</template>
+
+<template name="mainMenu">
+  <div class="header">
+  <h1>O3 Cafe</h1>
+  <div class="mainMenu">
+    {{#each items}}
+      <a href="{{routePath}}" class="mainMenuItem {{#if selected}}selected{{/if}}">
+        {{name}} <span class="glyphicon glyphicon-{{icon}}"></span>
+      </a>
+    {{/each}}
+
+    <a href="/members" class="mainMenuItem">
+      Members <span class="glyphicon glyphicon-user"></span>
+    </a>
+
+    {{#if currentUser}}
+      <span class="dropdown"><span class="mainMenuItem dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+          {{currentUser.username}} ▾
+        </span>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+          <li role="presentation"><a tabindex="-1" href="/profile">Profile</a></li>
+          <li role="presentation"><a tabindex="-1" href="/log-out">Log out</a></li>
+          <li class="divider"></li>
+          <li role="presentation"><a id="maxRightOption" tabindex="-1" href="#"><span class="glyphicon glyphicon-arrow-left"></span> Maximize chat</a></li>
+          <li role="presentation"><a id="maxLeftOption" tabindex="-1" href="#"><span class="glyphicon glyphicon-arrow-right"></span> Maximize site pages</a></li>
+          <li role="presentation"><a id="splitOption" tabindex="-1" href="#"><span class="glyphicon glyphicon-resize-horizontal"></span> Split screen</a></li>
+        </ul>
+      </span>
+    {{else}}
+      <a href="/log-in" class="mainMenuItem">
+        Log in <span class="glyphicon glyphicon-log-in"></span>
+      </a>
+    {{/if}}
+    <span style="margin-right: 10px"></span>
+  </div>
+  </div>
+</template>

@@ -1,6 +1,8 @@
 O3 Cafe
 =======
 
+Copy in old wall data
+
 Posts
 - BB tags (no embedded images.)
 - Notification when a new post is added.

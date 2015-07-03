@@ -62,6 +62,18 @@ Meteor.startup(function ()
     }
   });
 
+  Router.route('/wall', function () {
+    this.render('wall');
+  });
+
+  Router.route('/wall/archive', function () {
+    this.render('wallArchive');
+  });
+
+  Router.route('/wall/import', function () {
+    this.render('wallImport');
+  });
+
 });
 
 Meteor.methods(

@@ -19,12 +19,14 @@ Package.onUse(function(api) {
   api.use([
     'cfs:standard-packages',
     'cfs:gridfs',
+    'iron:router',
     'momentjs:moment'
   ]);
 
   api.addFiles('cafe-wall.js');
 
   api.addFiles(['client/archive.html'], 'client');
+  api.addFiles(['client/import.html', 'client/import.js'], 'client');
   api.addFiles(['client/wall.html', 'client/wall.js', 'client/wall.css'], 'client');
 
   api.addFiles(['server/wall.js'], 'server');

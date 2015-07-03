@@ -130,16 +130,6 @@ CafeCore = {
       this.render('news');
     });
 
-    // Wall
-
-    Router.route('/wall', function () {
-      this.render('wall');
-    });
-
-    Router.route('/wall/archive', function () {
-      this.render('wallArchive');
-    });
-
     // Apply route configurations for all modules
 
     for (var i = 0; i < routeConfigurations.length; i++) {

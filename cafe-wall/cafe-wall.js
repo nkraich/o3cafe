@@ -30,16 +30,16 @@ Meteor.startup(function ()
 
   WallPostsFS.allow({
     insert: function(userId, doc) {
-      return true;
+      return (Meteor.userId() !== null);
     },
 
     update: function(userId, doc, fieldNames, modifier) {
-      return true;
+      return (Meteor.userId() !== null);
       //return doc.userId === userId && userId === Meteor.userId();
     },
 
     remove: function(userId, doc) {
-      return true;
+      return (Meteor.userId() !== null);
       //return doc.userId === userId && userId === Meteor.userId();
     },
 
@@ -50,7 +50,7 @@ Meteor.startup(function ()
 
   Posts.allow({
     insert: function(userId, doc) {
-      return userId && userId === Meteor.userId();
+      return (Meteor.userId() !== null);
     },
 
     update: function(userId, doc, fieldNames, modifier) {
@@ -84,9 +84,14 @@ Meteor.methods(
       throw new Meteor.Error(413, "Please enter a message to post.");
     }*/
 
-    newWallPost.createdAt = new Date();
-    var id = Posts.insert(newWallPost);
-    
-    return id;
+    if (Meteor.userId()) {
+      newWallPost.createdAt = new Date();
+      var id = Posts.insert(newWallPost);
+      return id;
+    }
+    else {
+      throw new Meteor.Error(413, "You must be logged in to post.");
+      return null;
+    }
   }
 });

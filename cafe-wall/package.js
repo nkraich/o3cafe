@@ -13,7 +13,6 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.0.3.1');
 
-  //api.use(['insecure']);
   api.use(['cafe-core']);
   api.use(['templating'], 'client');
   api.use([

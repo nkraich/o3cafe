@@ -84,9 +84,11 @@ Template.username.events =
 };
 
 // Update the chat window position as new elements are added.
-Template.messages.rendered = function() {
+Template.message.rendered = function() {
   $("#chatWindow").scrollTop($("#chatWindow")[0].scrollHeight);
 };
+
+Meteor.subscribe("")
 
 Template.chat.rendered = function() {
   $("#chatInput").focus();

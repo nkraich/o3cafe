@@ -23,12 +23,16 @@
 
 <template name="messages">
   {{#each messages}}
+    {{> message}}
+  {{/each}}
+</template>
+
+<template name="message">
   {{#if action}}
     <div><span style="color: #800000; font-weight: 400">• {{username}} {{sanitizeContent message}}</span></div>
   {{else}}
     <div>&lt;{{username}}&gt; {{sanitizeContent message}}</div>
   {{/if}}
-  {{/each}}
 </template>
 
 <template name="userList">

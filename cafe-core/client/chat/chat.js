@@ -88,8 +88,6 @@ Template.message.rendered = function() {
   $("#chatWindow").scrollTop($("#chatWindow")[0].scrollHeight);
 };
 
-Meteor.subscribe("")
-
 Template.chat.rendered = function() {
   $("#chatInput").focus();
 };

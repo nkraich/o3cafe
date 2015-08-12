@@ -38,9 +38,17 @@
 <template name="userList">
   {{#each users}}
     {{#if status.idle}}
-      <div class="user idle">{{username}} <span class="small">{{score}}</span></div>
+      {{#if profile.vanityName}}
+        <div class="user idle">{{profile.vanityName}}</div>
+      {{else}}
+        <div class="user idle">{{username}}</div>
+      {{/if}}
     {{else}}
-      <div class="user">{{username}} <span class="small">{{score}}</span></div>
+      {{#if profile.vanityName}}
+        <div class="user">{{profile.vanityName}}</div>
+      {{else}}
+        <div class="user">{{username}}</div>
+      {{/if}}
     {{/if}}
   {{/each}}
   <div id="visitorsIndicator">{{visitorStatus}}</div>

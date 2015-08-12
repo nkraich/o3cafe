@@ -11,6 +11,11 @@ Template.profile.rendered = function() {
   $('#username').focus();
 };
 
+Template.deleteAccountConfirmation.rendered = function() {
+  $('#leftPanel').scrollTop($('#leftPanel')[0].scrollHeight);
+  $('#password').focus();
+};
+
 //------------------
 //  Data Providers
 //------------------
@@ -36,20 +41,31 @@ Template.profile.events =
   },
 
   'click #saveProfileButton' : function(e, tmpl) {
+    var username, vanityName, email, firstName, lastName;
+
     e.preventDefault();
 
+    // Set values.
     username = tmpl.find('#username').value;
-    emailAddress = tmpl.find('#email').value;
+    vanityName = tmpl.find('#vanityName').value;
+    email = tmpl.find('#email').value;
+    firstName = tmpl.find('#firstName').value;
+    lastName = tmpl.find('#lastName').value;
 
-    // Trim
+    // Trim.
     if (username) { username = username.trim(); }
-    if (emailAddress) { emailAddress = emailAddress.trim(); }
+    if (vanityName) { vanityName = vanityName.trim(); }
+    if (email) { email = emailAddress.trim(); }
+    if (firstName) { firstName = firstName.trim(); }
+    if (lastName) { lastName = lastName.trim(); }
 
+    // Required fields
     if (!username || username === '') {
       Notifications.showError("You must provide a username.");
       return;
     }
 
+    // Disable the save button.
     $('#saveProfileButton').prop("disabled", true);
 
     // Call the update method.
@@ -58,7 +74,12 @@ Template.profile.events =
       {
         $set: {
           username: username,
-          emails: [{address: emailAddress, verified: false}]
+          emails: [{address: email, verified: false}],
+          profile: {
+            vanityName: vanityName,
+            firstName: firstName,
+            lastName: lastName
+          }
         }
       },
       function(error)
@@ -84,14 +105,14 @@ Template.profile.events =
     Router.go('/change-password');
   },
 
+  // This starts the deletion process by popping open a confirmation
+  // control panel.  The user can still cancel after this method is called.
   'click #deleteAccountButton' : function(e, tmpl) {
     e.preventDefault();
     Session.set('showDeleteAccountConfirmation', true);
     _disableProfileEditForm();
   },
 
-  // This starts the deletion process by popping open a confirmation
-  // control panel.  The user can still cancel after this method is called.
   'click #cancelDeleteAccountButton' : function(e, tmpl) {
     e.preventDefault();
     Session.set('showDeleteAccountConfirmation', false);
@@ -134,14 +155,20 @@ Template.profile.events =
 
 _enableProfileEditForm = function(tmpl) {
   $('#username').prop("disabled", false);
+  $('#vanityName').prop("disabled", false);
   $('#email').prop("disabled", false);
+  $('#firstName').prop("disabled", false);
+  $('#lastName').prop("disabled", false);
   $('#saveProfileButton').prop("disabled", false);
   _focusOnProfileEditForm(tmpl);
 };
 
 _disableProfileEditForm = function(tmpl) {
   $('#username').prop("disabled", true);
+  $('#vanityName').prop("disabled", true);
   $('#email').prop("disabled", true);
+  $('#firstName').prop("disabled", true);
+  $('#lastName').prop("disabled", true);
   $('#saveProfileButton').prop("disabled", true);
 };
 

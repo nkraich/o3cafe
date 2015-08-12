@@ -9,6 +9,11 @@
           <input id="username" class="form-control input-md" value="{{username}}">
         </div>
         <div class="form-group">
+          <label>Vanity name (for chat)</label>
+          <input id="vanityName" class="form-control input-md" value="{{profile.vanityName}}">
+        </div>
+        <br>
+        <div class="form-group">
           <label>Email</label>
           {{#each emails}}
             <input id="email" class="form-control input-md" value="{{address}}">
@@ -16,6 +21,15 @@
             <input id="email" class="form-control input-md" value="">
           {{/each}}
         </div>
+        <div class="form-group">
+          <label>First name</label>
+          <input id="firstName" class="form-control input-md" value="{{profile.firstName}}">
+        </div>
+        <div class="form-group">
+          <label>Last name</label>
+          <input id="lastName" class="form-control input-md" value="{{profile.lastName}}">
+        </div>
+        <br>
         <button type="submit" id="saveProfileButton" class="btn btn-primary">Save changes</button>
       </form>
     {{/with}}
@@ -25,16 +39,7 @@
     <hr>
 
     {{#if showDeleteAccountConfirmation}}
-      <form>
-        <div class="form-group">
-          <label>Enter your password to delete account.</label>
-          {{#with currentUser}}
-            <input id="password" type="password" class="form-control input-md" value="{{password}}">
-          {{/with}}
-        </div>
-        <button type="reset" id="cancelDeleteAccountButton" class="btn btn-md btn-default">Cancel</button>
-        <button type="submit" id="deleteAccountConfirmationButton" style="float: right" class="btn btn-md btn-danger">Confirm account deletion</button>
-      </form>
+      {{> deleteAccountConfirmation}}
     {{else}}
       <form>
         <button type="button" id="changePasswordButton" class="btn btn-xs btn-default">Change password</button>
@@ -42,4 +47,18 @@
       </form>
     {{/if}}
   </div>
+</template>
+
+<template name="deleteAccountConfirmation">
+  <form>
+    <div class="form-group">
+      <label>Enter your password to delete account.</label>
+      {{#with currentUser}}
+        <input id="password" type="password" class="form-control input-md" value="{{password}}">
+      {{/with}}
+    </div>
+    <button type="reset" id="cancelDeleteAccountButton" class="btn btn-md btn-default">Cancel</button>
+    <button type="submit" id="deleteAccountConfirmationButton" style="float: right" class="btn btn-md btn-danger">Confirm account deletion</button>
+  </form>
+  <br>
 </template>

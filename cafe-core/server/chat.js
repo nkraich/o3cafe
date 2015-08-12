@@ -17,18 +17,14 @@ initChat = function() {
 Meteor.methods({
   addMessage : function (newMessage)
   {
+    var user, messageId;
+
     if (isCommand(newMessage)) {
       if (runCommand(newMessage)) {
         return;
       }
     }
 
-    if (newMessage.username === "") {
-      throw new Meteor.Error(
-        413,
-        "You have a username to post a message."
-      );
-    }
     if (newMessage.message === "") {
       throw new Meteor.Error(
         413,
@@ -36,12 +32,24 @@ Meteor.methods({
       );
     }
 
+    // Store user ID.
+    newMessage.userId = Meteor.userId();
+
+    // Get display name.
+    user = Meteor.user();
+    if (user.profile && user.profile.vanityName) {
+      newMessage.username = user.profile.vanityName;
+    }
+    else {
+      newMessage.username = user.username;
+    }
+
     // Trim whitespace.
     newMessage.message = newMessage.message.trim();
 
     newMessage.createdAt = new Date();
-    var id = Messages.insert(newMessage);
+    messageId = Messages.insert(newMessage);
     
-    return id;
+    return messageId;
   }
 });

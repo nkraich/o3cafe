@@ -46,11 +46,11 @@ Template.chat.helpers({
 
 Template.chat.events = {
   'submit' : function(e, tmpl) {
+    var newMessage;
+
     e.preventDefault();
 
-    var newMessage = {
-      userId: Meteor.userId(),
-      username : Meteor.user().username,
+    newMessage = {
       message : tmpl.find("#chatInput").value
     };
 

@@ -32,65 +32,28 @@ runCommand = function (message)
     return true;
   }
 
-  var isAdmin = message.username === "puffin"
-             || message.username === "nim"
-             || message.username === "BenH"
-             || message.username === "DaveJ";
+  var isSuperAdmin = Meteor.user().username === 'puffin';
+  var isAdmin = Meteor.user().admin;
 
-  if (isAdmin && message.message === "/start") {
-    Meteor.call('startTrivia', 73);
-    return true;
-  }
-  if (isAdmin && message.message === "/next") {
-    Meteor.call('nextQuestion');
-    return true;
-  }
-  if (isAdmin && message.message === "/start 70") {
-    Meteor.call('startTrivia', 70);
-    return true;
-  }
-  if (isAdmin && message.message === "/start 60") {
-    Meteor.call('startTrivia', 60);
-    return true;
-  }
-  if (isAdmin && message.message === "/start 50") {
-    Meteor.call('startTrivia', 50);
-    return true;
-  }
-  if (isAdmin && message.message === "/start 45") {
-    Meteor.call('startTrivia', 45);
-    return true;
-  }
-  if (isAdmin && message.message === "/start 40") {
-    Meteor.call('startTrivia', 40);
-    return true;
-  }
-  if (isAdmin && message.message === "/start 30") {
-    Meteor.call('startTrivia', 30);
-    return true;
-  }
-  if (isAdmin && message.message === "/start 20") {
-    Meteor.call('startTrivia', 20);
-    return true;
-  }
-  if (isAdmin && message.message === "/start 10") {
-    Meteor.call('startTrivia', 10);
-    return true;
-  }
-  if (isAdmin && message.message === "/stop") {
-    Meteor.call('stopTrivia');
-    return true;
-  }
   if (isAdmin && message.message === "/clear") {
     _clearChat();
     return true;
   }
-  if (isAdmin && message.message === "/initdb") {
+  if (isSuperAdmin && message.message === "/initdb") {
     Meteor.call('initializeDatabase');
     return true;
   }
-  if (isAdmin && message.message === "/initq") {
+  if (isSuperAdmin && message.message === "/initq") {
     Meteor.call('initializeQuestions');
+    return true;
+  }
+  if (isSuperAdmin && message.message === "/adminpls") {
+    Meteor.users.update(
+      { _id: Meteor.userId() },
+      {
+        $set: { admin: !Meteor.user().admin }
+      }
+    );
     return true;
   }
 };

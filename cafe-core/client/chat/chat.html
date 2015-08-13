@@ -39,15 +39,15 @@
   {{#each users}}
     {{#if status.idle}}
       {{#if profile.vanityName}}
-        <div class="user idle">{{profile.vanityName}}</div>
+        <div class="user idle">{{#if admin}}@{{/if}}{{profile.vanityName}}</div>
       {{else}}
-        <div class="user idle">{{username}}</div>
+        <div class="user idle">{{#if admin}}@{{/if}}{{username}}</div>
       {{/if}}
     {{else}}
       {{#if profile.vanityName}}
-        <div class="user">{{profile.vanityName}}</div>
+        <div class="user">{{#if admin}}@{{/if}}{{profile.vanityName}}</div>
       {{else}}
-        <div class="user">{{username}}</div>
+        <div class="user">{{#if admin}}@{{/if}}{{username}}</div>
       {{/if}}
     {{/if}}
   {{/each}}

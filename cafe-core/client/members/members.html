@@ -14,10 +14,21 @@
       {{#if currentUser.admin}}
       <div>
         <span>
-          {{#if admin}}
-          <a href="#" class="remove-admin-button" data-id="{{_id}}">Remove admin</a> &nbsp;
+          {{#if currentUser.superAdmin}}
+            {{#if superAdmin}}
+              <i>Super</i>
+            {{/if}}
+            {{#if admin}}
+              <a href="#" class="remove-admin-button" data-id="{{_id}}">Admin</a> &nbsp;
+            {{else}}
+              <a href="#" class="make-admin-button" data-id="{{_id}}">Member</a> &nbsp;
+            {{/if}}
           {{else}}
-          <a href="#" class="make-admin-button" data-id="{{_id}}">Make admin</a> &nbsp;
+            {{#if admin}}
+              <span style="color: #888">Admin</span>
+            {{else}}
+              <span style="color: #888">Member</span>
+            {{/if}}
           {{/if}}
         </span>
         <span class="last-login-ip">{{status.lastLogin.ipAddr}}</span>

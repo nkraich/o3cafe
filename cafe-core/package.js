@@ -52,11 +52,12 @@ Package.onUse(function(api) {
   ]);
 
   addClientFiles(api, 'chat', [
-    'chat.html', 'chat.js', 'chat.css'
+    'chat.html', 'chat.js', 'chat.css',
   ]);
 
   addClientFiles(api, '', [
     'layout.html', 'default.html', 'layout.css', 'style.css',
+    'notes.html',
     'misc.js',
     'main.js'
   ]);

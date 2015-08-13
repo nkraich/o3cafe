@@ -55,6 +55,15 @@ CafeCore = {
       }
     });
 
+    Router.route('/notes', function () {
+      if (Meteor.user() && Meteor.user().admin) {
+        this.render('notes');
+      }
+      else {
+        this.redirect('/log-in');
+      }
+    });
+
     Router.route('/games', function () {
       this.render('games');
     });

@@ -32,7 +32,8 @@ runCommand = function (message)
     return true;
   }
 
-  var isSuperAdmin = Meteor.user().username === 'puffin';
+  var isRootUser = Meteor.user().username === 'puffin';
+  var isSuperAdmin = Meteor.user().superAdmin;
   var isAdmin = Meteor.user().admin;
 
   if (isAdmin && message.message === "/clear") {
@@ -47,11 +48,24 @@ runCommand = function (message)
     Meteor.call('initializeQuestions');
     return true;
   }
-  if (isSuperAdmin && message.message === "/adminpls") {
+  if (isSuperAdmin && message.message === "/admin") {
     Meteor.users.update(
       { _id: Meteor.userId() },
       {
-        $set: { admin: !Meteor.user().admin }
+        $set: {
+          admin: !Meteor.user().admin
+        }
+      }
+    );
+    return true;
+  }
+  if (isRootUser && message.message === "/sadmin") {
+    Meteor.users.update(
+      { _id: Meteor.userId() },
+      {
+        $set: {
+          superAdmin: !Meteor.user().superAdmin
+        }
       }
     );
     return true;

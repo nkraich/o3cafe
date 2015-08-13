@@ -48,7 +48,7 @@ runCommand = function (message)
     Meteor.call('initializeQuestions');
     return true;
   }
-  if (isSuperAdmin && message.message === "/admin") {
+  if ((isRootUser || isSuperAdmin) && message.message === "/admin") {
     Meteor.users.update(
       { _id: Meteor.userId() },
       {

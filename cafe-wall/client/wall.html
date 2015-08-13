@@ -4,7 +4,9 @@
     {{>uploader}}
     <br />
     <a href="/wall/archive">View the archive</a>
-    <a href="/wall/import" style="float: right">Admin</a>
+    {{#if currentUser.admin}}
+      <a href="/wall/import" style="float: right">Admin</a>
+    {{/if}}
     <hr />
     {{>wallPosts}}
   </div>

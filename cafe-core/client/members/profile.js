@@ -55,7 +55,7 @@ Template.profile.events =
     // Trim.
     if (username) { username = username.trim(); }
     if (vanityName) { vanityName = vanityName.trim(); }
-    if (email) { email = emailAddress.trim(); }
+    if (email) { email = email.trim(); }
     if (firstName) { firstName = firstName.trim(); }
     if (lastName) { lastName = lastName.trim(); }
 

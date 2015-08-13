@@ -17,6 +17,21 @@ runCommand = function (message)
     return false;
   }
 
+  // Change vanity name.
+  if (splitString[0] === "/nick") {
+    Meteor.users.update(
+      { _id: Meteor.userId() },
+      {
+        $set: {
+          profile: {
+            vanityName: string.substring(5, string.length).trim()
+          }
+        }
+      }
+    );
+    return true;
+  }
+
   var isAdmin = message.username === "puffin"
              || message.username === "nim"
              || message.username === "BenH"

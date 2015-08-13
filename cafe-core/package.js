@@ -20,7 +20,7 @@ Package.onUse(function(api) {
     'jquery',
     'iron:router',
     'cfs:standard-packages',
-    'cfs:gridfs',
+    'cfs:filesystem',
     'momentjs:moment',
     'accounts-base',
     'accounts-password',

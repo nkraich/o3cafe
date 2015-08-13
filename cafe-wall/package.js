@@ -17,7 +17,7 @@ Package.onUse(function(api) {
   api.use(['templating'], 'client');
   api.use([
     'cfs:standard-packages',
-    'cfs:gridfs',
+    'cfs:filesystem',
     'iron:router',
     'momentjs:moment'
   ]);

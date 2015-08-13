@@ -13,11 +13,12 @@ Posts = new Meteor.Collection("posts");
 
 Meteor.startup(function ()
 {
-  WallPostsStore = new FS.Store.GridFS("wallPostFileData");
+  WallPostsStore = new FS.Store.FileSystem("wallPostFileData", {path: "~/uploads"});
+  //WallPostsStore = new FS.Store.GridFS("wallPostFileData");
   WallPostsFS = new FS.Collection("wallPosts", {
     stores: [WallPostsStore],
     filter: {
-      maxSize: 1048576, //in bytes
+      maxSize: 2097152, //in bytes
       allow: {
         contentTypes: ['image/*'],
         extensions: ['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG', 'gif', 'GIF']
@@ -30,17 +31,15 @@ Meteor.startup(function ()
 
   WallPostsFS.allow({
     insert: function(userId, doc) {
-      return (Meteor.userId() !== null);
+      return (this.userId !== null);
     },
 
     update: function(userId, doc, fieldNames, modifier) {
-      return (Meteor.userId() !== null);
-      //return doc.userId === userId && userId === Meteor.userId();
+      return (this.userId !== null);
     },
 
     remove: function(userId, doc) {
-      return (Meteor.userId() !== null);
-      //return doc.userId === userId && userId === Meteor.userId();
+      return (this.userId !== null);
     },
 
     download: function(userId) {
@@ -50,15 +49,15 @@ Meteor.startup(function ()
 
   Posts.allow({
     insert: function(userId, doc) {
-      return (Meteor.userId() !== null);
+      return (this.userId !== null);
     },
 
     update: function(userId, doc, fieldNames, modifier) {
-      return doc.userId === userId && userId === Meteor.userId();
+      return doc.userId === userId && userId === this.userId;
     },
 
     remove: function(userId, doc) {
-      return doc.userId === userId && userId === Meteor.userId();
+      return doc.userId === userId && userId === this.userId;
     }
   });
 

@@ -170,6 +170,19 @@ Template.profile.events =
     notify.requestPermission(function() {
       Session.set('notificationsPermissionLevel', notify.permissionLevel());
     });
+    Meteor.users.update(
+      { _id: Meteor.userId() },
+      {
+        $set: {
+          profile: {
+            notifications: true
+          }
+        }
+      },
+      function(error)
+      {
+      }
+    );
   },
 
   'change #enableNotificationsCheckbox' : function(e, tmpl) {

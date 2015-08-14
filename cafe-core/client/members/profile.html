@@ -38,6 +38,44 @@
     <br>
     <hr>
 
+    <br>
+    <br>
+      {{#if notificationsPermissionDefault}}
+        <p>
+          If you'd like to enable notifications for chat messages that appear while you are not focused on the browser
+          or are on another tab, click the button below.
+        </p>
+        <br>
+        <form style="text-align: center">
+          <button type="submit" id="requestNotificationPermissionButton" class="btn btn-default">Enable notifications</button>
+        </form>
+        <br>
+      {{/if}}
+      {{#if notificationsPermissionGranted}}
+        <p>You have given your browser permission to display notifications from this site.  You may toggle them on and
+        off as you like.</p>
+        <br>
+        <form style="text-align: center">
+          <div class="checkbox">
+            <label>
+              <input id="enableNotificationsCheckbox" type="checkbox" checked="{{currentUser.profile.notifications}}"> Enable notifications
+            </label>
+          </div>
+        </form>
+      {{/if}}
+      {{#if notificationsPermissionDenied}}
+        <p>You have denied permission to show notifications from this site.  To enable it, you must <b>change your
+        browser's notification settings for this site</b> and then click the button below.</p>
+        <br>
+        <form style="text-align: center">
+          <button type="submit" id="requestNotificationPermissionButton" class="btn btn-default">Reset notification permissions</button>
+        </form>
+        <br>
+      {{/if}}
+    <br>
+
+    <hr>
+
     {{#if showDeleteAccountConfirmation}}
       {{> deleteAccountConfirmation}}
     {{else}}
@@ -46,6 +84,7 @@
         <button type="button" id="deleteAccountButton" style="float: right" class="btn btn-xs btn-default">Delete account</button>
       </form>
     {{/if}}
+    <br>
   </div>
 </template>
 

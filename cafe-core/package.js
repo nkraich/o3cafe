@@ -31,7 +31,8 @@ Package.onUse(function(api) {
   // Client files
 
   addClientFiles(api, 'compatibility', [
-    'autolinker.js'
+    'autolinker.js',
+    'desktop-notify-min.js'
   ]);
 
   addClientFiles(api, '', [

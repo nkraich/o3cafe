@@ -3,6 +3,7 @@
 //-------------
 
 Template.profile.created = function() {
+  Session.set('notificationsPermissionLevel', notify.permissionLevel());
   this.lastFocusedProfileField = 'username';
 };
 
@@ -23,7 +24,23 @@ Template.deleteAccountConfirmation.rendered = function() {
 Template.profile.helpers({
   showDeleteAccountConfirmation: function () {
     return Session.get('showDeleteAccountConfirmation');
-  }
+  },
+
+  notificationsPermissionLevel: function() {
+    return Session.get('notificationsPermissionLevel');
+  },
+
+  notificationsPermissionDefault: function() {
+    return Session.get('notificationsPermissionLevel') === 'default';
+  },
+
+  notificationsPermissionGranted: function() {
+    return Session.get('notificationsPermissionLevel') === 'granted';
+  },
+
+  notificationsPermissionDenied: function() {
+    return Session.get('notificationsPermissionLevel') === 'denied';
+  },
 });
 
 //----------
@@ -146,6 +163,30 @@ Template.profile.events =
         });
       }
     });
+  },
+
+  'click #requestNotificationPermissionButton' : function(e, tmpl) {
+    e.preventDefault();
+    notify.requestPermission(function() {
+      Session.set('notificationsPermissionLevel', notify.permissionLevel());
+    });
+  },
+
+  'change #enableNotificationsCheckbox' : function(e, tmpl) {
+    var value = $('#enableNotificationsCheckbox').prop("checked");
+    Meteor.users.update(
+      { _id: Meteor.userId() },
+      {
+        $set: {
+          profile: {
+            notifications: value
+          }
+        }
+      },
+      function(error)
+      {
+      }
+    );
   }
 };
 

@@ -76,6 +76,9 @@ initMain = function()
     autoHide: false,
     autoScroll: true
   });
+
+  // Configure native notifications.
+  notify.config({pageVisibility: true, autoClose: 5000});
 };
 
 //------------------

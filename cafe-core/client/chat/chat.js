@@ -4,6 +4,7 @@
 
 initChat = function() {
   console.log("Initializing chat.");
+  Session.set('lastNotificationTime', new Date());
   Meteor.subscribe("chat");
 };
 
@@ -86,6 +87,19 @@ Template.username.events =
 // Update the chat window position as new elements are added.
 Template.message.rendered = function() {
   $("#chatWindow").scrollTop($("#chatWindow")[0].scrollHeight);
+
+  var lastTime, currentTime, message;
+  lastTime = Session.get('lastNotificationTime');
+  currentTime = new Date();
+  message = Messages.findOne({}, {sort: {createdAt: -1}});
+
+  // Show a new alert if it's been more than 5 seconds from the last one.
+  if ((currentTime - lastTime) > 5000 && Meteor.userId() !== message.userId) {
+    Session.set('lastNotificationTime', currentTime);
+    if (Meteor.user().profile.notifications) {
+      notify.createNotification('New message', {body: message.username + ': ' + message.message, icon: 'images/chat.ico'});
+    }
+  }
 };
 
 Template.chat.rendered = function() {

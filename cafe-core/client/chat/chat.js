@@ -23,7 +23,7 @@ Template.messages.helpers({
 
     for (i = 0; i < messages.length; i++)
     {
-      if (messages[i].createdAt.getTime() > (lastTimestamp + 120000) || i === 0) {
+      if (messages[i].createdAt.getTime() > (lastTimestamp + (30 * 60 * 1000)) || i === 0) {
         messages[i].showTimestamp = true;
       }
       else {

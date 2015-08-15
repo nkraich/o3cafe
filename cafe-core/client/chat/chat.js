@@ -14,8 +14,36 @@ initChat = function() {
 
 Template.messages.helpers({
   messages: function() {
+    var messages, i, lastTimestamp;
+
     if (!Meteor.user()) { return []; }
-    return Messages.find({}, {sort: {createdAt: 1}});
+
+    messages = Messages.find({}, {sort: {createdAt: 1}}).fetch();
+    lastTimestamp = 0;
+
+    for (i = 0; i < messages.length; i++)
+    {
+      if (messages[i].createdAt.getTime() > (lastTimestamp + 120000) || i === 0) {
+        messages[i].showTimestamp = true;
+      }
+      else {
+        messages[i].showTimestamp = false;
+      }
+      lastTimestamp = messages[i].createdAt.getTime();
+    }
+
+    return messages;
+  }
+});
+
+Template.message.helpers({
+  formatDate: function(date) {
+    if (date) {
+      return moment(date).calendar();
+    }
+    else {
+      return "";
+    }
   }
 });
 

@@ -28,6 +28,9 @@
 </template>
 
 <template name="message">
+  {{#if showTimestamp}}
+    <div class="timestamp one"><span>{{formatDate createdAt}}</span></div>
+  {{/if}}
   {{#if action}}
     <div><span style="color: #800000; font-weight: 400">• {{username}} {{sanitizeContent message}}</span></div>
   {{else}}

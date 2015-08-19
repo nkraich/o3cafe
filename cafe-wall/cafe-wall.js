@@ -6,7 +6,21 @@
 CafeWall = {
   menuItemName: "Wall",
   menuItemIcon: "bullhorn",
-  menuItemRoutePath: "/wall"
+  menuItemRoutePath: "/wall",
+  routeConfiguration: function(Router)
+  {
+    Router.route('/wall', function () {
+      this.render('wall');
+    });
+
+    Router.route('/wall/archive', function () {
+      this.render('wallArchive');
+    });
+
+    Router.route('/wall/import', function () {
+      this.render('wallImport');
+    });
+  }
 };
 
 Posts = new Meteor.Collection("posts");
@@ -59,18 +73,6 @@ Meteor.startup(function ()
     remove: function(userId, doc) {
       return doc.userId === userId && userId === this.userId;
     }
-  });
-
-  Router.route('/wall', function () {
-    this.render('wall');
-  });
-
-  Router.route('/wall/archive', function () {
-    this.render('wallArchive');
-  });
-
-  Router.route('/wall/import', function () {
-    this.render('wallImport');
   });
 
 });

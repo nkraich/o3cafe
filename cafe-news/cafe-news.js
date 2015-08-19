@@ -6,7 +6,12 @@
 CafeNews = {
   menuItemName: "News",
   menuItemIcon: "globe",
-  menuItemRoutePath: "/news"
+  menuItemRoutePath: "/news",
+  routeConfiguration: function(Router) {
+    Router.route('/news', function () {
+      this.render('news');
+    });
+  }
 };
 
 NewsPosts = new Meteor.Collection("newsPosts");

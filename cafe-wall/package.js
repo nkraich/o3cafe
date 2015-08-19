@@ -18,7 +18,6 @@ Package.onUse(function(api) {
   api.use([
     'cfs:standard-packages',
     'cfs:filesystem',
-    'iron:router',
     'momentjs:moment'
   ]);
 

@@ -1,12 +1,6 @@
 routeConfigurations = [];
 mainMenuItems = [];
 
-/*CafeNews = {
-  menuItemName: "News",
-  menuItemIcon: "globe",
-  menuItemRoutePath: "/news"
-};*/
-
 CafeGames = {
   menuItemName: "Games",
   menuItemIcon: "picture",
@@ -19,17 +13,8 @@ CafeJam = {
   menuItemRoutePath: "/jam"
 };
 
-/*CafeWall = {
-  menuItemName: "Wall",
-  menuItemIcon: "bullhorn",
-  menuItemRoutePath: "/wall"
-};*/
-
 GlobalConfigs = new Meteor.Collection("globalConfigs");
 Messages = new Meteor.Collection("messages"); 
-//Channels = new Meteor.Collection("channels");
-//Questions = new Meteor.Collection("questions");
-//Scores = new Meteor.Collection("scores"); 
 
 CafeCore = {
   addModule: function(module, menuItemName, menuItemIcon, menuItemRoutePath) {
@@ -131,12 +116,6 @@ CafeCore = {
 
     Router.route('/jam/rules', function () {
       this.render('jam1Rules');
-    });
-
-    // News
-
-    Router.route('/news', function () {
-      this.render('news');
     });
 
     // Apply route configurations for all modules

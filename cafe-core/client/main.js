@@ -27,6 +27,7 @@ initMain = function()
 
   Meteor.subscribe("main");
   Meteor.subscribe("globalConfigs");
+  Meteor.subscribe("mediaFiles");
   /*Meteor.subscribe("trivia");
   Meteor.subscribe("wall");
   Meteor.subscribe("arcade");*/

@@ -129,8 +129,69 @@ CafeCore = {
     Router.onAfterAction(function() {
       FlashMessages.clear();
     });
+  },
+
+  uploadMediaFileFromFileSelectorEvent: function(event, successCallback, errorCallback) {
+    FS.Utility.eachFile(event, function(file) {
+      file.userId = Meteor.userId();
+      var mediaFile = MediaFiles.insert(file, function (error, fileObj) {
+        if (!error) {
+          if (successCallback) { successCallback(mediaFile); }
+        }
+        else {
+          console.log(error);
+          if (errorCallback) { errorCallback(error); }
+        }
+      });
+    });
+  },
+
+  getMediaFileUrl: function(mediaFileId) {
+    var file = MediaFiles.findOne({_id: mediaFileId});
+    if (file) {
+      return file.url();
+    }
+    else {
+      return null;
+    }
   }
 };
+
+Meteor.startup(function ()
+{
+  MediaFilesStore = new FS.Store.FileSystem("mediaFilesStore", {path: "~/uploads/media"});
+  MediaFiles = new FS.Collection("mediaFiles", {
+    stores: [MediaFilesStore],
+    filter: {
+      maxSize: 2097152,  // Number of bytes
+      allow: {
+        contentTypes: ['image/*'],
+        extensions: ['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG', 'gif', 'GIF']
+      },
+      onInvalid: function (message) {
+        alert(message);
+      }
+    }
+  });
+
+  MediaFiles.allow({
+    insert: function(userId, doc) {
+      return (this.userId !== null);
+    },
+
+    update: function(userId, doc, fieldNames, modifier) {
+      return (this.userId !== null);
+    },
+
+    remove: function(userId, doc) {
+      return (this.userId !== null);
+    },
+
+    download: function(userId) {
+      return true;
+    }
+  });
+});
 
 var _addToMenu = function(module, menuItemName, menuItemIcon, menuItemRoutePath) {
   if (!menuItemName) { menuItemName = module.menuItemName; }

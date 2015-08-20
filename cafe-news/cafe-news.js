@@ -7,9 +7,18 @@ CafeNews = {
   menuItemName: "News",
   menuItemIcon: "globe",
   menuItemRoutePath: "/news",
-  routeConfiguration: function(Router) {
+  routeConfiguration: function(Router)
+  {
     Router.route('/news', function () {
       this.render('news');
+    });
+
+    Router.route('/news/edit', function () {
+      this.render('edit-news');
+    });
+
+    Router.route('/news/create', function () {
+      this.render('create-news');
     });
   }
 };
@@ -20,15 +29,18 @@ Meteor.startup(function ()
 {
   NewsPosts.allow({
     insert: function(userId, doc) {
-      return userId && userId === Meteor.userId();
+      return true;
+      //return userId && userId === Meteor.userId();
     },
 
     update: function(userId, doc, fieldNames, modifier) {
-      return doc.userId === userId && userId === Meteor.userId();
+      return true;
+      //return doc.userId === userId && userId === Meteor.userId();
     },
 
     remove: function(userId, doc) {
-      return doc.userId === userId && userId === Meteor.userId();
+      return true;
+      //return doc.userId === userId && userId === Meteor.userId();
     }
   });
 });

@@ -59,6 +59,19 @@ initMain = function()
       }
     );
   });
+
+  Meteor.publish('mediaFiles', function()
+  {
+    return [
+      MediaFiles.find({}, {
+        // TODO: Delete the sorting
+        sort: {
+          "copies.wallPostFileData.updatedAt": -1,
+          "copies.wallPostFileData.utime": -1
+        }
+      })
+    ];
+  });
 };
 
 //--------------------

@@ -7,13 +7,14 @@
 
 <template name="createNewsForm">
   <form>
+    <input id="titleInput" class="form-control" placeholder="Title">
     {{#each paragraphsWithIndex}}
       {{>createNewsParagraph}}
     {{/each}}
-    <button id="postButton" type="button" class="btn btn-default btn-md">
+    <button type="button" class="cancel-button btn btn-default btn-md">
       Cancel
     </button>
-    <button id="postButton" type="button" class="btn btn-success btn-md" style="float:right">
+    <button class="post-button btn btn-success btn-md" style="float:right">
       <span class="glyphicon glyphicon-thumbs-up"></span> Post
     </button>
   </form>

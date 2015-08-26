@@ -12,6 +12,10 @@
   color: #888;
 }
 
+#titleInput {
+  margin-bottom: 8px;
+}
+
 .paragraph {
   margin-bottom: 8px;
   border-radius: 4px;

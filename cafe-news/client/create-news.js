@@ -176,5 +176,49 @@ Template.createNewsForm.events = {
       Session.set('selectedParagraphIndex', -1);
       Session.set('selectedParagraphIndex', index);
     });
+  },
+
+  'click .post-button': function(event, template) {
+    var title;
+
+    event.preventDefault();
+
+    // Set values.
+    title = template.find('#titleInput').value;
+
+    // Trim.
+    if (title) { title = title.trim(); }
+
+    // Required fields
+    if (!title || title === '') {
+      Notifications.showError("You must provide a title.");
+      return;
+    }
+
+    // Disable the post button.
+    //$('.post-button').prop("disabled", true);
+    //template.find('.post-button').
+
+    NewsPosts.insert(
+      {
+        userId: Meteor.userId(),
+        createdAt: Date.now(),
+        title: title
+      },
+      function(error)
+      {
+        if (error) {
+          Notifications.showError(error);
+        }
+        else {
+          Router.go('/news');
+        }
+        //$('.post-button').prop("disabled", false);
+      }
+    );
+  },
+
+  'click .cancel-button': function(event, template) {
+    Router.go('/news');
   }
 };

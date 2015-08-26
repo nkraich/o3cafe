@@ -1,7 +1,12 @@
 <template name="news">
-  <div id="wrapper">
+  <div id="wrapper" class="news-page">
+    <span class="admin-controls"><a href="/news/create">Create post</a></span>
     <header>Welcome to O3 Cafe</header>
     <h2>Frequently visited by, like, 4 people.</h2>
+    {{#each newsPosts}}
+      {{>newsPost}}
+      <hr>
+    {{/each}}
     <p>
       Five Nights and Freddy's, the biggest click game ever, is getting a movie.  But why wait?  This
       <a href="https://www.youtube.com/watch?v=tl3vFiHoOpE">tour of Creative Engineering</a> &mdash; the creators of
@@ -15,5 +20,21 @@
       <a href="https://vine.co/interdimensional_">semi-game-dev Vine.</a>
     </p>
     <p class="footer">puffin, April 15th, 2015</p>
+  </div>
+</template>
+
+<template name="newsPost">
+  <div class="news-post" data-id="{{_id}}">
+    <p>{{title}}</p>
+    <p class="footer">
+      <span class="admin-controls">
+        <a class="edit-link" href="#">Edit</a>
+        |
+        <a class="delete-link" href="#">Delete</a>
+      </span>
+      <span class="signature">
+        {{getUsername userId}} &mdash; {{formatDate createdAt}}
+      </span>
+    </p>
   </div>
 </template>

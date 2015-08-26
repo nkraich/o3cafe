@@ -17,6 +17,7 @@ Package.onUse(function(api) {
   api.use(['cafe-core']);
   api.use(['templating'], 'client');
   api.use([
+    'iron:router',
     'momentjs:moment'
   ]);
 

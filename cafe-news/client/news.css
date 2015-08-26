@@ -1,3 +1,14 @@
+.news-page {
+  position: relative;
+}
+
+.news-page > .admin-controls {
+  position: absolute;
+  top: 4px;
+  right: 0px;
+  font-size: 10px;
+}
+
 h2 {
   font-size: 14px;
   margin-top: -16px;
@@ -59,4 +70,12 @@ h2 {
 p.footer {
   color: #888;
   text-align: right;
+}
+
+p.footer > .admin-controls {
+  float: left;
+  font-size: 10px;
+}
+
+p.footer .signature {
 }

@@ -1,5 +1,114 @@
-<template name="edit-news">
+<template name="editNews">
   <div id="wrapper">
-    <header>Edit News Post</header>
+    {{#if isNew}}
+      <header>Create News Post</header>
+    {{else}}
+      <header>Edit News Post</header>
+    {{/if}}
+    {{>editNewsForm}}
+  </div>
+</template>
+
+<template name="editNewsForm">
+  <form>
+    <input class="title-input form-control" placeholder="Title" value="{{title}}">
+    {{#each paragraphsWithIndex}}
+      {{>editNewsParagraph}}
+    {{/each}}
+    <button type="button" class="cancel-button btn btn-default btn-md">
+      Cancel
+    </button>
+    {{#if isNew}}
+      <button class="post-button btn btn-success btn-md" style="float:right">
+        <span class="glyphicon glyphicon-thumbs-up"></span> Post
+      </button>
+    {{else}}
+      <button class="save-button btn btn-success btn-md" style="float:right">
+        <span class="glyphicon glyphicon-thumbs-up"></span> Save
+      </button>
+    {{/if}}
+  </form>
+  {{#if pendingFileUrl}}
+    <br />
+    <img class="pendingFileImage" src="{{pendingFileUrl}}">
+    <span id="pendingDeleteButton" class="glyphicon glyphicon-remove-circle deleteButton"></span>
+  {{/if}}
+</template>
+
+<template name="editNewsParagraph">
+  <div class="paragraph" data-index="{{ui.index}}">
+    {{#if ui.showPictureLeft}}
+      <div class="picture-container left">
+        {{# if ui.isPictureUploaded}}
+          <img src="{{mediaFileUrl image.id}}">
+        {{else}}
+          <div class="instructions">Click here<br>to upload<br>a picture.</div>
+        {{/if}}
+        <input class="file-input" type="file" />
+      </div>
+      <textarea class="paragraph-input right form-control input-md" rows="5">{{text}}</textarea>
+    {{/if}}
+    {{#if ui.showPictureCenter}}
+      <div class="picture-container center">
+        {{# if ui.isPictureUploaded}}
+          <img src="{{mediaFileUrl image.id}}">
+        {{else}}
+          <div class="instructions">Click here<br>to upload<br>a picture.</div>
+        {{/if}}
+        <input class="file-input" type="file" />
+      </div>
+    {{/if}}
+    {{#if ui.showPictureRight}}
+      <textarea class="paragraph-input left form-control input-md" rows="5">{{text}}</textarea>
+      <div class="picture-container right">
+        {{# if ui.isPictureUploaded}}
+          <img src="{{mediaFileUrl image.id}}">
+        {{else}}
+          <div class="instructions">Click here<br>to upload<br>a picture.</div>
+        {{/if}}
+        <input class="file-input" type="file" />
+      </div>
+    {{/if}}
+    {{#if ui.noPicture}}
+      <textarea class="paragraph-input form-control input-md" rows="5">{{text}}</textarea>
+    {{/if}}
+    {{#if ui.selected}}
+      <div class="controls">
+        {{#if ui.deletable}}
+          <button type="button" class="deleteParagraphButton btn btn-danger btn-sm">
+            <span class="glyphicon glyphicon-remove"></span> Delete
+          </button>
+        {{else}}
+          <button type="button" class="deleteParagraphButton btn btn-danger btn-sm" disabled>
+            <span class="glyphicon glyphicon-remove"></span> Delete
+          </button>
+        {{/if}}
+
+        <button type="button" class="insertParagraphButton btn btn-default btn-sm" style="float: right; margin-left: 64px">
+          <span class="glyphicon glyphicon-font"></span>
+          Insert paragraph below
+        </button>
+        <div class="btn-group" role="group" style="float: right">
+          {{#if ui.showPictureLeft}}
+            <button type="button" class="showPictureLeftButton btn btn-primary btn-sm">Left</button>
+          {{else}}
+            <button type="button" class="showPictureLeftButton btn btn-default btn-sm">Left</button>
+          {{/if}}
+          {{#if ui.showPictureCenter}}
+            <button type="button" class="showPictureCenterButton btn btn-primary btn-sm">Center</button>
+          {{else}}
+            <button type="button" class="showPictureCenterButton btn btn-default btn-sm">Center</button>
+          {{/if}}
+          {{#if ui.showPictureRight}}
+            <button type="button" class="showPictureRightButton btn btn-primary btn-sm">Right</button>
+          {{else}}
+            <button type="button" class="showPictureRightButton btn btn-default btn-sm">Right</button>
+          {{/if}}
+        </div>
+        <span style="float: right; margin-top: 5px; margin-right: 8px">
+          <span class="glyphicon glyphicon-picture" style="margin-left: 4px"></span>
+        </span>
+      </div>
+    {{/if}}
   </div>
 </template>

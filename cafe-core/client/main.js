@@ -129,6 +129,13 @@ Template.mainMenu.helpers({
   }
 });
 
+//--------------
+//  UI Helpers
+//--------------
+
+Handlebars.registerHelper('getMediaFileUrl', function(mediaFileId) {
+  return CafeCore.getMediaFileUrl(mediaFileId)
+});
 
 //----------
 //  Events

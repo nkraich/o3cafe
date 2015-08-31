@@ -3,4 +3,4 @@ CafeCore.addModule(CafeWall);
 //CafeCore.addModule(CafeGames);
 //CafeCore.addModule(CafeJam);
 
-CafeCore.run(CafeWall);
+CafeCore.run(CafeNews);

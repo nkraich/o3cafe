@@ -39,6 +39,18 @@ Template.newsPost.helpers({
     else {
       return "";
     }
+  },
+
+  imageStyle: function(style) {
+    var newsPost = Template.currentData();
+
+    if (!newsPost || !newsPost.image || !newsPost.image.id || !newsPost.image.orientation) {
+      return style === 'none';
+    }
+    else {
+      return (style === newsPost.image.orientation);
+    }
+
   }
 });
 
@@ -46,15 +58,21 @@ Template.newsPost.helpers({
 //  Events
 //----------
 
+Template.news.events = {
+  'click .create-button': function(event, template) {
+    Router.go('/news/edit');
+  }
+};
+
 Template.newsPost.events = {
-  'click .edit-link': function(event, template) {
+  'click .edit-button': function(event, template) {
     var newsPost, index;
     newsPost = $(event.currentTarget).parents('.news-post');
     id = $(newsPost).attr('data-id');
-    alert("TODO: Edit");
+    Router.go('/news/edit/' + id);
   },
 
-  'click .delete-link': function(event, template) {
+  'click .delete-button': function(event, template) {
     var newsPost, index;
     newsPost = $(event.currentTarget).parents('.news-post');
     id = $(newsPost).attr('data-id');

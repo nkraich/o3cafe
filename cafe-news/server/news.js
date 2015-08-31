@@ -10,7 +10,7 @@ Meteor.startup(function ()
   {
     return [
       NewsPosts.find({}, {
-        fields: {'userId': 1, 'createdAt': 1, 'title': 1},
+        fields: {'userId': 1, 'createdAt': 1, 'title': 1, 'paragraphs': 1},
         sort: {'createdAt': -1}
       })
     ];

@@ -3,6 +3,8 @@
 //  © 2015, Nicholas Kraich
 //---------------------------
 
+NewsPosts = new Meteor.Collection("newsPosts");
+
 CafeNews = {
   menuItemName: "News",
   menuItemIcon: "globe",
@@ -14,16 +16,24 @@ CafeNews = {
     });
 
     Router.route('/news/edit', function () {
-      this.render('edit-news');
+      this.render('editNews');
     });
 
-    Router.route('/news/create', function () {
-      this.render('create-news');
+    Router.route('/news/edit/:_id', {
+      //loadingTemplate: 'loading',
+
+      waitOn: function () {
+        // return one handle, a function, or an array
+        return Meteor.subscribe('news', this.params._id);
+      },
+
+      action: function () {
+        var newsPost = NewsPosts.findOne({_id: this.params._id});
+        this.render('editNews', {data: newsPost});
+      }
     });
   }
 };
-
-NewsPosts = new Meteor.Collection("newsPosts");
 
 Meteor.startup(function ()
 {

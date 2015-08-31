@@ -26,7 +26,6 @@ Package.onUse(function(api) {
   api.addFiles(
     [
       'client/news.html', 'client/news.js', 'client/news.css',
-      'client/create-news.html', 'client/create-news.js', 'client/create-news.css',
       'client/edit-news.html', 'client/edit-news.js', 'client/edit-news.css'
     ], 'client'
   );

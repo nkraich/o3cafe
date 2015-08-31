@@ -1,40 +1,56 @@
 <template name="news">
   <div id="wrapper" class="news-page">
-    <span class="admin-controls"><a href="/news/create">Create post</a></span>
+    {{#if currentUser.admin}}
+      <span class="admin-controls">
+        <button type="button" class="create-button btn btn-default btn-xs">Create new post</button>
+      </span>
+    {{/if}}
     <header>Welcome to O3 Cafe</header>
     <h2>Frequently visited by, like, 4 people.</h2>
     {{#each newsPosts}}
-      {{>newsPost}}
       <hr>
+      {{>newsPost}}
     {{/each}}
-    <p>
-      Five Nights and Freddy's, the biggest click game ever, is getting a movie.  But why wait?  This
-      <a href="https://www.youtube.com/watch?v=tl3vFiHoOpE">tour of Creative Engineering</a> &mdash; the creators of
-      The Rock-afire Explosion &mdash; is the real thing.  There's also a
-      <a href="https://vimeo.com/ondemand/therockafireexplosion">documentary</a>.
-    </p>
-    <p class="footer">puffin, April 16th, 2015</p>
-    <hr />
-    <p>
-      Flipice is working on a new Zelda-like game.  Art is great, as usual.  Here's his
-      <a href="https://vine.co/interdimensional_">semi-game-dev Vine.</a>
-    </p>
-    <p class="footer">puffin, April 15th, 2015</p>
   </div>
 </template>
 
 <template name="newsPost">
   <div class="news-post" data-id="{{_id}}">
-    <p>{{title}}</p>
-    <p class="footer">
-      <span class="admin-controls">
-        <a class="edit-link" href="#">Edit</a>
-        |
-        <a class="delete-link" href="#">Delete</a>
-      </span>
+    <div class="header">
+      {{#if currentUser.admin}}
+        <div class="admin-controls btn-group" role="group">
+          <button type="button" class="edit-button btn btn-default btn-xs">Edit</button>
+          <button type="button" class="delete-button btn btn-default btn-xs">Delete</button>
+        </div>
+      {{/if}}
+      <h3>{{title}}</h3>
+    </div>
+    {{#each paragraphs}}
+      {{#if imageStyle "none"}}
+        <p>{{#markdown}}{{sanitizeContent text}}{{/markdown}}</p>
+      {{/if}}
+      {{#if imageStyle "left"}}
+        <p>
+          <img src="{{getMediaFileUrl image.id}}" class="left-image" />
+          {{#markdown}}{{sanitizeContent text}}{{/markdown}}
+        </p>
+      {{/if}}
+      {{#if imageStyle "right"}}
+        <p>
+          <img src="{{getMediaFileUrl image.id}}" class="right-image" />
+          {{#markdown}}{{sanitizeContent text}}{{/markdown}}
+        </p>
+      {{/if}}
+      {{#if imageStyle "center"}}
+        <p style="text-align: center">
+          <img src="{{getMediaFileUrl image.id}}" class="center-image" />
+        </p>
+      {{/if}}
+    {{/each}}
+    <div class="footer">
       <span class="signature">
         {{getUsername userId}} &mdash; {{formatDate createdAt}}
       </span>
-    </p>
+    </div>
   </div>
 </template>

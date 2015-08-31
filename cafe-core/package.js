@@ -25,7 +25,8 @@ Package.onUse(function(api) {
     'accounts-base',
     'accounts-password',
     'mizzao:user-status@=0.6.3',
-    'mrt:flash-messages@=0.2.4'
+    'mrt:flash-messages@=0.2.4',
+    'markdown',
   ]);
 
   // Client files

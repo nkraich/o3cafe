@@ -41,7 +41,7 @@ p {
 
 /* Header */
 
-.header {
+.main > .header {
   background-color: #e8f0f8;
   height: 40px;
   white-space: nowrap;

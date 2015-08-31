@@ -1,69 +1,8 @@
-_focusOnParagraph = function(index) {
-  Meteor.setTimeout(function() {
-    $('.paragraph').slice(index, index+1).find('textarea').focus();
-  }, 100);
-};
-
-_setParagraphImageId = function(index, id) {
-  var newsPost, paragraphs;
-  newsPost = Session.get('newsPost');
-  paragraphs = newsPost.paragraphs;
-
-  if (!paragraphs[index].image) {
-    paragraphs[index].image = {};
-  }
-
-  paragraphs[index].image.id = id;
-
-  Session.set('newsPost', newsPost);
-};
-
-_setParagraphImageOrientation = function(index, orientation) {
-  var newsPost, paragraphs;
-  newsPost = Session.get('newsPost');
-  paragraphs = newsPost.paragraphs;
-
-  if (!paragraphs[index].image) {
-    paragraphs[index].image = {};
-  }
-
-  if (paragraphs[index].image.orientation === orientation) {
-    paragraphs[index].image.orientation = null;
-  }
-  else {
-    paragraphs[index].image.orientation = orientation;
-  }
-
-  Session.set('newsPost', newsPost);
-};
-
-//
-// Edit news
-//
-
-Template.editNews.helpers({
-
-  isNew: function() {
-    return Template.currentData() === null;
-  }
-
-});
-
-//
-// Edit news form
-//
+//------------------
+//  Data providers
+//------------------
 
 Template.editNewsForm.helpers({
-
-  isNew: function() {
-    return Template.currentData() === null;
-  },
-
-  title: function() {
-    var newsPost = Session.get('newsPost');
-    return newsPost ? newsPost.title : "";
-  },
-
   paragraphsWithIndex: function() {
     var newsPost, paragraphs, i;
 
@@ -91,6 +30,37 @@ Template.editNewsForm.helpers({
   }
 });
 
+//-----------
+//  Helpers
+//-----------
+
+Template.editNews.helpers({
+  isNew: function() {
+    return Template.currentData() === null;
+  }
+});
+
+Template.editNewsForm.helpers({
+  isNew: function() {
+    return Template.currentData() === null;
+  },
+
+  title: function() {
+    var newsPost = Session.get('newsPost');
+    return newsPost ? newsPost.title : "";
+  }
+});
+
+Template.editNewsParagraph.helpers({
+  mediaFileUrl: function(mediaFileId) {
+    return CafeCore.getMediaFileUrl(mediaFileId);
+  }
+});
+
+//----------
+//  Events
+//----------
+
 Template.editNews.onRendered(function () {
   var newsPost = Template.currentData();
 
@@ -99,16 +69,6 @@ Template.editNews.onRendered(function () {
   }
 
   Session.set('newsPost', newsPost);
-});
-
-//
-// Edit news paragraph
-//
-
-Template.editNewsParagraph.helpers({
-  mediaFileUrl: function(mediaFileId) {
-    return CafeCore.getMediaFileUrl(mediaFileId);
-  }
 });
 
 Template.editNewsForm.events = {
@@ -307,4 +267,47 @@ Template.editNewsForm.events = {
   'click .cancel-button': function(event, template) {
     Router.go('/news');
   }
+};
+
+//-----------
+//  Private
+//-----------
+
+_focusOnParagraph = function(index) {
+  Meteor.setTimeout(function() {
+    $('.paragraph').slice(index, index+1).find('textarea').focus();
+  }, 100);
+};
+
+_setParagraphImageId = function(index, id) {
+  var newsPost, paragraphs;
+  newsPost = Session.get('newsPost');
+  paragraphs = newsPost.paragraphs;
+
+  if (!paragraphs[index].image) {
+    paragraphs[index].image = {};
+  }
+
+  paragraphs[index].image.id = id;
+
+  Session.set('newsPost', newsPost);
+};
+
+_setParagraphImageOrientation = function(index, orientation) {
+  var newsPost, paragraphs;
+  newsPost = Session.get('newsPost');
+  paragraphs = newsPost.paragraphs;
+
+  if (!paragraphs[index].image) {
+    paragraphs[index].image = {};
+  }
+
+  if (paragraphs[index].image.orientation === orientation) {
+    paragraphs[index].image.orientation = null;
+  }
+  else {
+    paragraphs[index].image.orientation = orientation;
+  }
+
+  Session.set('newsPost', newsPost);
 };

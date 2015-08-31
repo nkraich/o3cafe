@@ -21,8 +21,12 @@ Template.news.helpers({
   }
 });
 
+//-----------
+//  Helpers
+//-----------
+
 Template.newsPost.helpers({
-  getUsername: function(userId) {
+  usernameFromId: function(userId) {
     var user = Meteor.users.findOne({_id: userId});
     if (user && user.username) {
       return user.username;

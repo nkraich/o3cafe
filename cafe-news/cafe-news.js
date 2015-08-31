@@ -39,18 +39,15 @@ Meteor.startup(function ()
 {
   NewsPosts.allow({
     insert: function(userId, doc) {
-      return true;
-      //return userId && userId === Meteor.userId();
+      return Meteor.user().admin;
     },
 
     update: function(userId, doc, fieldNames, modifier) {
-      return true;
-      //return doc.userId === userId && userId === Meteor.userId();
+      return Meteor.user().admin;
     },
 
     remove: function(userId, doc) {
-      return true;
-      //return doc.userId === userId && userId === Meteor.userId();
+      return Meteor.user().admin;
     }
   });
 });

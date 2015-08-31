@@ -180,11 +180,11 @@ Meteor.startup(function ()
     },
 
     update: function(userId, doc, fieldNames, modifier) {
-      return (this.userId !== null);
+      return (this.userId !== userId);
     },
 
     remove: function(userId, doc) {
-      return (this.userId !== null);
+      return (this.userId !== userId || Meteor.user().admin);
     },
 
     download: function(userId) {

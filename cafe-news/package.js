@@ -18,15 +18,16 @@ Package.onUse(function(api) {
   api.use(['templating'], 'client');
   api.use([
     'iron:router',
-    'momentjs:moment'
+    'momentjs:moment',
+    'less'
   ]);
 
   api.addFiles('cafe-news.js');
 
   api.addFiles(
     [
-      'client/news.html', 'client/news.js', 'client/news.css',
-      'client/edit-news.html', 'client/edit-news.js', 'client/edit-news.css'
+      'client/news.html', 'client/news.js', 'client/news.less',
+      'client/edit-news.html', 'client/edit-news.js', 'client/edit-news.less'
     ], 'client'
   );
 

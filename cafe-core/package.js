@@ -27,6 +27,7 @@ Package.onUse(function(api) {
     'mizzao:user-status@=0.6.3',
     'mrt:flash-messages@=0.2.4',
     'markdown',
+    'less'
   ]);
 
   // Client files

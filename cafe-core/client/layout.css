@@ -29,7 +29,7 @@
   bottom: 0px;
 }
 
-#wrapper {
+#wrapper, .page {
   margin-left: 24px;
   margin-right: 24px;
   margin-bottom: 8px;

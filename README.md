@@ -1,7 +1,7 @@
 O3 Cafe
 =======
 
-A hangout for game developers.  Visit [o3software.com](http://o3software.com).
+A chat / hangout for a small group of game developers.
 
 Features
 --------
